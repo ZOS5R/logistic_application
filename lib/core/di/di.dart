@@ -1,38 +1,35 @@
-import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:dio/dio.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:get_it/get_it.dart'; 
+import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:logistic_app/Feuthers/auth/data/api/auth_api_service.dart';
+import 'package:logistic_app/Feuthers/auth/data/repo/repo.dart';
+import 'package:logistic_app/Feuthers/auth/presentation/cubit/auth_cubit.dart';
 import 'package:logistic_app/core/services/dio_factory.dart';
 
 final GetIt getIt = GetIt.instance;
 
 setupService() async {
-
   // await dotenv.load(fileName: '.env');
 
   // Initialize notifications
-  await AwesomeNotifications().initialize(null, [
-    NotificationChannel(
-      channelKey: 'basic_channel',
-      channelName: 'Basic notifications',
-      channelDescription: 'Notification channel for basic notifications',
-      defaultColor: Colors.red,
-      ledColor: Colors.white,
-    ),
-  ], channelGroups: [
-    NotificationChannelGroup(
-        channelGroupKey: 'basic_channel_group', channelGroupName: 'basic Name')
-  ]);
+  // await AwesomeNotifications().initialize(null, [
+  //   NotificationChannel(
+  //     channelKey: 'basic_channel',
+  //     channelName: 'Basic notifications',
+  //     channelDescription: 'Notification channel for basic notifications',
+  //     defaultColor: Colors.red,
+  //     ledColor: Colors.white,
+  //   ),
+  // ], channelGroups: [
+  //   NotificationChannelGroup(
+  //       channelGroupKey: 'basic_channel_group', channelGroupName: 'basic Name')
+  // ]);
 
-  bool isNotificationAllowed =
-      await AwesomeNotifications().isNotificationAllowed();
-  if (!isNotificationAllowed) {
-    await AwesomeNotifications().requestPermissionToSendNotifications();
-  }
+  // bool isNotificationAllowed =
+  //     await AwesomeNotifications().isNotificationAllowed();
+  // if (!isNotificationAllowed) {
+  //   await AwesomeNotifications().requestPermissionToSendNotifications();
+  // }
 
   // Initialize Firebase
 
@@ -49,14 +46,14 @@ setupService() async {
   //     payload:
   //         message.data.map((key, value) => MapEntry(key, value.toString())),
   //   );
-    // AwesomeNotifications().createNotification(
-    //   content: NotificationContent(
-    //     id: message.hashCode,
-    //     channelKey: 'basic_channel',
-    //     title: title,
-    //     body: body,
-    //   ),
-    // );
+  // AwesomeNotifications().createNotification(
+  //   content: NotificationContent(
+  //     id: message.hashCode,
+  //     channelKey: 'basic_channel',
+  //     title: title,
+  //     body: body,
+  //   ),
+  // );
   // });
 
   // Handle background and terminated notifications
@@ -70,32 +67,33 @@ setupService() async {
   //   debugPrint('receivedNotification $route');
   // });
 
-  await EasyLocalization.ensureInitialized();
-  await AwesomeNotifications().initialize(null, [
-    NotificationChannel(
-      channelKey: 'basic_channel',
-      channelName: 'Basic notifications',
-      channelDescription: 'Notification channel for basic notifications',
-      defaultColor: Colors.red,
-      ledColor: Colors.white,
-    ),
-  ], channelGroups: [
-    NotificationChannelGroup(
-        channelGroupKey: 'basic_channel_group', channelGroupName: 'basic Name')
-  ]);
-  bool isNotifcationAllowed =
-      await AwesomeNotifications().isNotificationAllowed();
-  if (!isNotifcationAllowed) {
-    await AwesomeNotifications().requestPermissionToSendNotifications();
-  }
-// HIVE
+//   await AwesomeNotifications().initialize(null, [
+//     NotificationChannel(
+//       channelKey: 'basic_channel',
+//       channelName: 'Basic notifications',
+//       channelDescription: 'Notification channel for basic notifications',
+//       defaultColor: Colors.red,
+//       ledColor: Colors.white,
+//     ),
+//   ], channelGroups: [
+//     NotificationChannelGroup(
+//         channelGroupKey: 'basic_channel_group', channelGroupName: 'basic Name')
+//   ]);
+//   bool isNotifcationAllowed =
+//       await AwesomeNotifications().isNotificationAllowed();
+//   if (!isNotifcationAllowed) {
+//     await AwesomeNotifications().requestPermissionToSendNotifications();
+//   }
+// // HIVE
   await Hive.initFlutter();
-  Hive.openBox('settings');
-
+  await Hive.openBox("settings");
 
   // API service
   Dio dio = DioFactory.getDio();
 
-// AUTH
- 
+  // CUBITS
+  // Auth
+  getIt.registerLazySingleton<AuthApiService>(() => AuthApiService(dio));
+  getIt.registerLazySingleton<AuthCubit>(
+      () => AuthCubit(AuthRepository(getIt())));
 }

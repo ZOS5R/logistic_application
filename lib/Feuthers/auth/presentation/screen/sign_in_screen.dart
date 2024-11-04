@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:logistic_app/Feuthers/auth/presentation/cubit/auth_cubit.dart';
 import 'package:logistic_app/Feuthers/auth/presentation/widgets/sign_in_form_fields.dart';
-import 'package:logistic_app/Feuthers/auth/presentation/widgets/sign_in_prompt.dart';
 import 'package:logistic_app/Feuthers/auth/presentation/widgets/sign_in_subtitle.dart';
 import 'package:logistic_app/Feuthers/auth/presentation/widgets/sign_in_title.dart';
 import 'package:logistic_app/core/di/di.dart';
@@ -34,7 +33,6 @@ class _SignInScreenState extends State<SignInScreen> {
               child: const SignInFormFields(),
             ),
             SizedBox(height: 20.h),
-            const SignInPrompt(),
           ],
         ),
       ),

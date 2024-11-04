@@ -1,9 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioFactory {
-  /// private constructor to prevent instantiation
   DioFactory._();
 
   static Dio? _dio;
@@ -26,7 +24,7 @@ class DioFactory {
   static void _addDioHeaders() {
     // Set common headers
     _dio?.options.headers = {
-      'X-Secret-Token': dotenv.get('X_SECRET_TOKEN'),
+      // 'X-Secret-Token': dotenv.get('X_SECRET_TOKEN'),
       'Content-Type': 'application/json', // Add content type
     };
   }

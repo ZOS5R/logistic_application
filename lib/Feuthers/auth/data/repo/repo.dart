@@ -4,9 +4,9 @@ import 'package:logistic_app/Feuthers/auth/model/sign_in_request/sign_in_request
 import 'package:logistic_app/Feuthers/auth/model/sign_in_response/sign_in_response.dart';
 import 'package:logistic_app/core/api/api_result.dart';
 
-class SignInRepository {
+class AuthRepository {
   final AuthApiService _apiService;
-  SignInRepository(this._apiService);
+  AuthRepository(this._apiService);
 
   Future<ApiResult<SignInResponse>> signIn(SignInRequest requestModel) async {
     try {

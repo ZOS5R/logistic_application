@@ -6,7 +6,6 @@ import 'package:logistic_app/core/di/di.dart';
 import 'package:logistic_app/core/manger/manager_cubit.dart';
 import 'package:logistic_app/core/manger/manager_state.dart';
 import 'package:logistic_app/core/router/router.dart';
-import 'package:logistic_app/core/services/notifications/notification_service.dart';
 import 'package:logistic_app/core/theme/app_theme.dart';
 
 void main() async {
@@ -15,7 +14,7 @@ void main() async {
   // await Firebase.initializeApp(
   //   options: DefaultFirebaseOptions.currentPlatform,
   // );
-  await NotificationServices.initializeNotification();
+  // await NotificationServices.initializeNotification();
   // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   await setupService();
@@ -26,9 +25,6 @@ void main() async {
       supportedLocales: const [
         Locale('en', "US"),
         Locale('ar', "AE"),
-        Locale('zh', 'Hant'),
-        Locale('zh', 'Hans'),
-        Locale('id', 'ID'),
       ],
       path: 'assets/translations',
       fallbackLocale: const Locale('en', "US"),

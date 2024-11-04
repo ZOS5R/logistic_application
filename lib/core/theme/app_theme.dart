@@ -4,30 +4,29 @@ class AppTheme {
   // Light ColorScheme
   static ColorScheme lightColorScheme = const ColorScheme(
     brightness: Brightness.light,
-    primary: Color.fromARGB(255, 255, 217, 0), // Darker Yellow
-    secondary: Color.fromARGB(255, 230, 230, 230),
-    surface: Colors.white, // Light Gray
-    error: Colors.red,
-    onPrimary: Colors.black, // Text color on primary
-    onSecondary: Colors.white, // Text color on secondary
+    primary: Color.fromARGB(255, 128, 203, 196), // Soft Teal
+    secondary: Color.fromARGB(255, 244, 236, 224), // Light Beige
+    surface: Color.fromARGB(255, 255, 255, 240), // Light Cream
+    error: Color.fromARGB(255, 255, 184, 186), // Soft Coral
+    onPrimary: Colors.white, // Text color on primary
+    onSecondary: Colors.black, // Text color on secondary
     onSurface: Colors.black,
     onError: Colors.white,
-    shadow: Color.fromARGB(29, 57, 57, 57),
+    shadow: Color.fromARGB(29, 0, 0, 0),
   );
 
   // Dark ColorScheme
   static ColorScheme darkColorScheme = const ColorScheme(
     brightness: Brightness.dark,
-    // primary: Color.fromARGB(255, 255, 217, 0), // Darker Yellow
-    primary: Color.fromARGB(255, 255, 217, 0), // Darker Yellow
-    secondary: Color.fromARGB(255, 45, 45, 45), // Dark Gray for secondary
-    surface: Color.fromARGB(255, 23, 23, 23), // Dark surface color
-    error: Colors.red,
-    onPrimary: Colors.black, // Text color on primary
-    onSecondary: Color.fromARGB(255, 65, 65, 65), // Text color on secondary
+    primary: Color.fromARGB(255, 128, 203, 196), // Soft Teal
+    secondary: Color.fromARGB(255, 60, 60, 60), // Dark Gray
+    surface: Color.fromARGB(255, 30, 30, 30), // Dark surface color
+    error: Color.fromARGB(255, 255, 184, 186), // Soft Coral
+    onPrimary: Colors.white, // Text color on primary
+    onSecondary: Color.fromARGB(255, 200, 200, 200), // Text color on secondary
     onSurface: Colors.white, // White text on dark surface
     onError: Colors.white,
-    shadow: Color.fromARGB(255, 57, 57, 57),
+    shadow: Color.fromARGB(255, 0, 0, 0),
   );
 
   static const TextStyle buttonText = TextStyle(
@@ -43,8 +42,7 @@ class AppTheme {
       scaffoldBackgroundColor: lightColorScheme.surface,
       appBarTheme: AppBarTheme(
         backgroundColor: lightColorScheme.primary,
-        iconTheme: const IconThemeData(
-            color: Colors.black), // Dark icon for light theme
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       buttonTheme: ButtonThemeData(
         buttonColor: lightColorScheme.primary,
@@ -62,10 +60,10 @@ class AppTheme {
       checkboxTheme: CheckboxThemeData(
         fillColor: WidgetStateProperty.resolveWith<Color>((states) {
           if (states.contains(WidgetState.selected)) {
-            return lightColorScheme.primary; // Yellow when selected
+            return lightColorScheme.primary; // Teal when selected
           }
           return const Color.fromARGB(
-              255, 236, 236, 236); // Default unchecked color
+              255, 244, 236, 224); // Default unchecked color
         }),
         checkColor:
             WidgetStateProperty.all(Colors.white), // White checkmark color
@@ -99,7 +97,7 @@ class AppTheme {
       checkboxTheme: CheckboxThemeData(
         fillColor: WidgetStateProperty.resolveWith<Color>((states) {
           if (states.contains(WidgetState.selected)) {
-            return darkColorScheme.primary; // Yellow when selected
+            return darkColorScheme.primary; // Teal when selected
           }
           return Colors.grey; // Default unchecked color
         }),
