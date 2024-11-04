@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (_) => ManagerCubit(),
       child: ScreenUtilInit(
-        designSize: const Size(411, 823),
+        designSize: const Size(375, 812),
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {

@@ -20,7 +20,7 @@ class CustomButton extends StatelessWidget {
     this.backgroundColor,
     this.textColor,
     this.elevation = 2.0,
-    this.borderRadius = 12.0,
+    this.borderRadius = 8.0,
     this.textStyle,
     this.padding,
     this.additionalWidget,
@@ -31,38 +31,45 @@ class CustomButton extends StatelessWidget {
     TextStyle style;
     if (textStyle == null) {
       style = TextStyles.text_16(context)
-          .copyWith(color: Theme.of(context).textTheme.bodyLarge!.color);
+          .copyWith(color: Colors.white, fontWeight: FontWeight.bold);
     } else {
       style = textStyle!
           .copyWith(color: Theme.of(context).textTheme.bodyLarge!.color);
     }
-    return ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          foregroundColor: textColor,
-          backgroundColor:
-              backgroundColor ?? Theme.of(context).colorScheme.primary,
-          elevation: elevation,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius),
-          ),
-          padding: padding ??
-              const EdgeInsets.symmetric(vertical: 10.0, horizontal: 24.0),
+    return Row(
+      children: [
+        Expanded(
+          child: ElevatedButton(
+              onPressed: onPressed,
+              style: ElevatedButton.styleFrom(
+                foregroundColor: textColor,
+                backgroundColor:
+                    backgroundColor ?? Theme.of(context).colorScheme.primary,
+                elevation: elevation,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(borderRadius),
+                ),
+                padding: padding ??
+                    const EdgeInsets.symmetric(
+                        vertical: 10.0, horizontal: 24.0),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: additionalWidget != null
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(text.tr(), style: style),
+                          additionalWidget!,
+                        ],
+                      )
+                    : Text(text.tr(),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        style: textStyle ?? style),
+              )),
         ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: additionalWidget != null
-              ? Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(text.tr(), style: style),
-                    additionalWidget!,
-                  ],
-                )
-              : Text(text.tr(),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                  style: textStyle ?? style),
-        ));
+      ],
+    );
   }
 }

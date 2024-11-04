@@ -42,21 +42,17 @@ class TextStyles {
     }
   }
 
-  static TextStyle text_10(BuildContext context) =>
-      getTextStyle(context, 10, weight: FontWeight.bold);
-  static TextStyle text_12(BuildContext context) =>
-      getTextStyle(context, 12, weight: FontWeight.bold);
+  static TextStyle text_10(BuildContext context) => getTextStyle(context, 10);
+  static TextStyle text_12(BuildContext context) => getTextStyle(context, 12);
   static TextStyle text_14(BuildContext context) => getTextStyle(context, 14);
   static TextStyle text_16(BuildContext context) => getTextStyle(context, 16);
   static TextStyle text_18(BuildContext context) => getTextStyle(context, 18);
   static TextStyle text_20(BuildContext context) => getTextStyle(context, 20);
   static TextStyle text_22(BuildContext context) => getTextStyle(context, 22);
   static TextStyle text_24(BuildContext context) => getTextStyle(context, 24);
-  static TextStyle text_26(BuildContext context) =>
-      getTextStyle(context, 26, weight: FontWeight.bold);
+  static TextStyle text_26(BuildContext context) => getTextStyle(context, 26);
   static TextStyle text_28(BuildContext context) => getTextStyle(context, 28);
-  static TextStyle text_30(BuildContext context) =>
-      getTextStyle(context, 30, weight: FontWeight.bold);
+  static TextStyle text_30(BuildContext context) => getTextStyle(context, 30);
   static TextStyle text_32(BuildContext context) => getTextStyle(context, 32);
   static TextStyle text_34(BuildContext context) => getTextStyle(context, 34);
 }

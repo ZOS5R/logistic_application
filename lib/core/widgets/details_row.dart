@@ -31,4 +31,3 @@ class DetailsRowWidget extends StatelessWidget {
     );
   }
 }
-
